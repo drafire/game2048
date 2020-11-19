@@ -1,5 +1,11 @@
 <div class="container">
-    <text class="title">
-        Hello {{title}}
+    <text class="scores">
+        最高分 {{bestScores}}
     </text>
+    <text class="scores">
+        当前分 {{currentScores}}
+    </text>
+    <canvas class="canvas" ref='canvas'></canvas>
+    <input type="button" value="重新开始" class="btn">
+    </input>
 </div>
