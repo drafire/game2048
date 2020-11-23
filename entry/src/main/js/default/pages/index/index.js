@@ -1,8 +1,4 @@
-var grids = [[0, 2, 4, 8],
-             [16, 32, 64, 128],
-             [256, 512, 1024, 2048],
-             [8, 4, 2, 0]
-];
+var grids;
 const NewTheme = {
     "0": "#D4C8BD",
     "2": "#EDE3DA",
@@ -34,6 +30,34 @@ export default {
     onShow() {
         this.drawGrids();
     },
+    swipeGrids(event) {
+    },
+    onInit() {
+        this.initGrids();
+        this.addTwoOrFour();
+        this.addTwoOrFour();
+    },
+    addTwoOrFour() {
+        let array = [];
+        for (let row = 0;row < 4; row++) {
+            for (let column = 0;column < 4; column++) {
+                if (grids[row][column] == 0) {
+                    //这种push数组，有些神奇
+                    array.push([row,column]);
+                }
+            }
+        }
+
+        let randomIndex = Math.floor(Math.random() * array.length);
+        let row = array[randomIndex][0];
+        let column = array[randomIndex][1];
+
+        if (Math.random() < 0.8) {
+            grids[row][column] = 2;
+        } else {
+            grids[row][column] = 4;
+        }
+    },
     drawGrids() {
         for (let row = 0;row < 4; row++) {
             for (let column = 0;column < 4; column++) {
@@ -58,9 +82,23 @@ export default {
                     }
                     let offsetY = (SIDELEN - 24) / 2;
                     let offseX = (4 - gridStr.length) * (SIDELEN / 8);
+                    //canvas，可以百度这个插件的用法
                     context.fillText(gridStr,leftTopx + offseX,leftTopY + offsetY);
                 }
             }
         }
+    },
+    restartGame() {
+        this.initGrids();
+        this.addTwoOrFour();
+        this.addTwoOrFour();
+        this.drawGrids();
+    },
+    initGrids() {
+        grids = [[0, 0, 0, 0],
+                 [0, 0, 0, 0],
+                 [0, 0, 0, 0],
+                 [0, 0, 0, 0]
+        ];
     }
 }
