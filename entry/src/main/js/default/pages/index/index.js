@@ -36,19 +36,19 @@ export default {
         console.log("enent direct: " + event.direction);
         if (event.direction == "up") {
             //1、该方向的格子，行n的格子的值，被行n-1的格子的值代替
-//            for (let row = 1;row < ROW_LENGTH; row++) {
-//                for (let column = 0;column < CONLUMN_LENGTH; column++) {
-//                    //如果row-1行，column格子为0，则被row行，column 列代替
-//                    if (grids[row - 1][column] == 0) {
-//                        grids[row - 1][column] = grids[row][column];
-//                    } else if (grids[row - 1][column] == grids[row][column]) {
-//                        //如果row-1行，column格子不为0，则检查row行，column列和row-1行，column格子数字是否相同
-//                        //如果相同，则row-1行，column列的值，等于row-1行，column列的原来的值*2
-//                        //否则，什么都不做
-//                        grids[row - 1][column] = grids[row][column] * 2;
-//                    }
-//                }
-//            }
+            for (let row = 1;row < ROW_LENGTH; row++) {
+                for (let column = 0;column < CONLUMN_LENGTH; column++) {
+                    //如果row-1行，column格子为0，则被row行，column 列代替
+                    if (0 == grids[row - 1][column]) {
+                        grids[row - 1][column] = grids[row][column];
+                    } else if (grids[row - 1][column] == grids[row][column]) {
+                        //如果row-1行，column格子不为0，则检查row行，column列和row-1行，column格子数字是否相同
+                        //如果相同，则row-1行，column列的值，等于row-1行，column列的原来的值*2
+                        //否则，什么都不做
+                        grids[row - 1][column] = (grids[row][column] * 2);
+                    }
+                }
+            }
             //随机抽取一个格子，用于填入2或者4
             let columnIndex = 0;
             let rowIndex = 0;
