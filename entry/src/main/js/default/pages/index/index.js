@@ -18,6 +18,8 @@ const NewTheme = {
 var context;
 const SIDELEN = 70;
 const MARGIN = 5;
+const CONLUMN_LENGTH = 4;
+const ROW_LENGTH = 4;
 
 export default {
     data: {
@@ -31,6 +33,55 @@ export default {
         this.drawGrids();
     },
     swipeGrids(event) {
+        console.log("enent direct: " + event.direction);
+        if (event.direction == "up") {
+            //1、该方向的格子，行n的格子的值，被行n-1的格子的值代替
+//            for (let row = 1;row < ROW_LENGTH; row++) {
+//                for (let column = 0;column < CONLUMN_LENGTH; column++) {
+//                    //如果row-1行，column格子为0，则被row行，column 列代替
+//                    if (grids[row - 1][column] == 0) {
+//                        grids[row - 1][column] = grids[row][column];
+//                    } else if (grids[row - 1][column] == grids[row][column]) {
+//                        //如果row-1行，column格子不为0，则检查row行，column列和row-1行，column格子数字是否相同
+//                        //如果相同，则row-1行，column列的值，等于row-1行，column列的原来的值*2
+//                        //否则，什么都不做
+//                        grids[row - 1][column] = grids[row][column] * 2;
+//                    }
+//                }
+//            }
+            //随机抽取一个格子，用于填入2或者4
+            let columnIndex = 0;
+            let rowIndex = 0;
+            do{
+                rowIndex = Math.floor(Math.random() * ROW_LENGTH);
+                columnIndex = Math.floor(Math.random() * CONLUMN_LENGTH);
+            } while (grids[rowIndex][columnIndex].toString() != "0")
+
+            console.log("将在" + rowIndex + "行" + columnIndex + "列格子产生新的值");
+
+            if (Math.random() < 0.8) {
+                grids[rowIndex][columnIndex] = 2;
+            } else {
+                grids[rowIndex][columnIndex] = 4;
+            }
+
+            console.log("最后的grids的值如下：")
+            var str = "";
+            for (let row = 0;row < ROW_LENGTH; row++) {
+                for (let column = 0;column < CONLUMN_LENGTH; column++) {
+                    if (row != column) {
+                        str += grids[row][column] + " "
+                    } else {
+                        str += grids[row][column] + "\n";
+                        console.log(str)
+                        str = "";
+                    }
+                }
+            }
+        }
+
+        //重新绘制格子
+        this.drawGrids();
     },
     onInit() {
         this.initGrids();
@@ -43,7 +94,7 @@ export default {
             for (let column = 0;column < 4; column++) {
                 if (grids[row][column] == 0) {
                     //这种push数组，有些神奇
-                    array.push([row,column]);
+                    array.push([row, column]);
                 }
             }
         }
