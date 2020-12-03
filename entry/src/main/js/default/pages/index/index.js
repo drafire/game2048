@@ -199,6 +199,7 @@ export default {
         }
         if (isOver) {
             console.log("游戏结束");
+            //这里应该弹窗，提示游戏已经结束
             return;
         }
 
