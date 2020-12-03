@@ -14,17 +14,23 @@
     margin-top: 10px;
 }
 
-.canvas{
+.canvas {
     width: 305px;
     height: 305px;
     background-color: #BBADA0;
     margin-top: 10px;
 }
-.btn{
+.btn {
     width: 150px;
     height: 30px;
     background-color: #AD9D8F;
     font-size: 24px;
-    margin-top: 10px;
-    /*这里不需要设置居中显示，因为默认就是居中*/
+    margin-top: 10px;/*这里不需要设置居中显示，因为默认就是居中*/
+}
+
+.gameDone {
+    display: none;
+    text-align: center;
+    height: 24px;
+    margin: 0 215;
 }
