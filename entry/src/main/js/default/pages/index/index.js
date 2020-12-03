@@ -34,13 +34,17 @@ export default {
     },
     swipeGrids(event) {
         console.log("enent direct: " + event.direction);
+        //需要检测是否还有空格子
+
         if (event.direction == "up") {
             //1、该方向的格子，行n的格子的值，被行n-1的格子的值代替
             for (let row = 1;row < ROW_LENGTH; row++) {
                 for (let column = 0;column < CONLUMN_LENGTH; column++) {
                     //如果row-1行，column格子为0，则被row行，column 列代替
+                    //而且，row行，column列格子，需要置空为0
                     if (0 == grids[row - 1][column]) {
                         grids[row - 1][column] = grids[row][column];
+                        grids[row][column]=0;
                     } else if (grids[row - 1][column] == grids[row][column]) {
                         //如果row-1行，column格子不为0，则检查row行，column列和row-1行，column格子数字是否相同
                         //如果相同，则row-1行，column列的值，等于row-1行，column列的原来的值*2
@@ -63,20 +67,6 @@ export default {
                 grids[rowIndex][columnIndex] = 2;
             } else {
                 grids[rowIndex][columnIndex] = 4;
-            }
-
-            console.log("最后的grids的值如下：")
-            var str = "";
-            for (let row = 0;row < ROW_LENGTH; row++) {
-                for (let column = 0;column < CONLUMN_LENGTH; column++) {
-                    if (row != column) {
-                        str += grids[row][column] + " "
-                    } else {
-                        str += grids[row][column] + "\n";
-                        console.log(str)
-                        str = "";
-                    }
-                }
             }
         }
 
