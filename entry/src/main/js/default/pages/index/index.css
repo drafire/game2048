@@ -34,3 +34,25 @@
     height: 24px;
     margin: 0 215;
 }
+
+.dialog-main {
+    width: 500px;
+}
+.dialog-div {
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-txt {
+    width: 400px;
+    height: 160px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.txt {
+    color: #000000;
+    font-weight: bold;
+    font-size: 39px;
+}

@@ -1,3 +1,5 @@
+import prompt from '@system.prompt';
+
 var grids;
 const NewTheme = {
     "0": "#D4C8BD",
@@ -32,6 +34,7 @@ export default {
     },
     onShow() {
         this.drawGrids();
+        this.$element('simpledialog').show()
     },
     swipeGrids(event) {
         console.log("enent direct: " + event.direction);
