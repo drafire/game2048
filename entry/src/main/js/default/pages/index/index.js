@@ -34,7 +34,9 @@ export default {
     },
     onShow() {
         this.drawGrids();
-        this.$element('simpledialog').show()
+        prompt.showToast({
+            message: 'Successfully confirmed'
+        });
     },
     swipeGrids(event) {
         console.log("enent direct: " + event.direction);
